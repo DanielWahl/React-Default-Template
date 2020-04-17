@@ -63,7 +63,6 @@ header {
 header .logo {
   height: 70px;
   width: 70px;
-  background: url("../images/logo.png") no-repeat;
   background-size: 70px 70px;
   float: left;
 }
