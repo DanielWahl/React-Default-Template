@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Default-Template.iml" filepath="$PROJECT_DIR$/.idea/Default-Template.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../cah/.idea/cah.iml" filepath="$PROJECT_DIR$/../cah/.idea/cah.iml" />
     </modules>
   </component>
 </project>

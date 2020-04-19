@@ -3,26 +3,47 @@
  ***********************************/
 
 nav
-    height: $navHeight //calc(#{$navHeight} + 2rem)
+    height: calc(#{$navHeight} + 2rem)
     width: 100vw
+    max-width: 100%
     background: $navBackground
     z-index: 100
     user-select: none
+    //padding: 1rem 0
+    //float: right
 
-    float: right
+    &.fixed
+        position: fixed
+
+        &.background
+            background: $darkBase
 
     .content
-        display: grid
-        justify-content: space-between
-        grid-template-columns: 1fr auto
-        align-content: center
-        padding: 0
-
-
-        @media screen and (max-width: $tablet)
-            width: $navHeight
 
         aside.navContainer
+
+            @media screen and (max-width: $tablet)
+                width: $navHeight
+
+            input.mobileCheckbox, input.userOpenCheckbox
+                opacity: 0
+                cursor: pointer
+                -webkit-touch-callout: none
+                z-index: 2
+
+                position: absolute
+
+
+            input.mobileCheckbox
+                width: 50px
+                height: 42px
+                display: none
+                top: 1.8rem
+
+                @media screen and (max-width: $tablet)
+                    display: block
+
+
 
             ul
                 height: $navHeight
@@ -33,35 +54,97 @@ nav
 
                 li
                     display: inline-block
-                    font-size: 1.2rem
                     height: $navHeight
-                    padding: 0 1.5rem
-                    color: $white
-                    line-height: $navHeight
+                    cursor: pointer
 
-                    &:hover
-                        background: $primaryHover
-                        color: white
+                    @media screen and (max-width: $tablet)
+                        width: 100%
+
+                    a.navLink, span.navLink
+                        display: inline-block
+                        height: $navHeight
+                        padding: 0 1.5rem
+                        color: $white
+                        line-height: $navHeight
                         text-decoration: none
+                        font-size: 1.2rem
+
+                        @media screen and (max-width: $tablet)
+                            width: 100%
+
+                        &:hover
+                            background: $primaryHover
+                            color: white
+                            text-decoration: none
+
+                        &> i, &> svg
+                            vertical-align: sub
 
 
 
-            input
-                width: 50px
-                height: 42px
-                opacity: 0
-                cursor: pointer
-                -webkit-touch-callout: none
-                z-index: 2
-                top: 0.8rem
-                position: absolute
+                    &.user
 
-                display: none
+                        .userBox
+                            display: none
+                            transform: translateX(-50%)
 
-                @media screen and (max-width: $tablet)
-                    display: block
+                            &::before
+                                content: "\A"
+                                border-style: solid
+                                border-width: 10px 15px 10px 0
+                                border-color: transparent white transparent transparent
+                                position: absolute
+                                left: 276px
+                                top: -15px
+                                transform: rotate(90deg)
 
-            span
+                            @media screen and (max-width: 1500px)
+                                right: 1rem
+                                transform: none
+
+                                &::before
+                                    right: calc((100vw - 1200px) / 1.6) //1rem
+                                    left: unset
+
+
+                            @media screen and (max-width: $content)
+                                right: 1rem
+                                transform: none
+
+                                &::before
+                                    right: 2.2rem
+
+                            @media screen and (max-width: $tablet)
+                                width: calc(100% - 2rem)
+                                margin: 0 auto
+
+
+
+
+                        input.userOpenCheckbox
+                            width: 85px
+                            height: $navHeight
+                            top: 1rem
+
+                            @media screen and (max-width: $tablet)
+                                top: unset
+                                width: 100%
+
+                            &:hover
+                                &~ span
+                                    background: $primaryHover
+                                    color: white
+                                    text-decoration: none
+
+                            &:checked
+                                &~ .userBox
+                                    display: block
+
+
+
+
+
+            span.mobileToggle
                 width: 32px
                 height: 4px
                 top: 0
@@ -81,34 +164,34 @@ nav
 
 
                 &:first-of-type
-                    margin-top: 1.5rem
+                    margin-top: 2.5rem
                     transform-origin: 0% 0%
 
 
                 &:nth-of-type(2)
-                    margin-top: 2rem
+                    margin-top: 3rem
                     transform-origin: 0% 100%
 
 
                 &:nth-of-type(3)
-                    margin-top: 2.5rem
+                    margin-top: 3.5rem
 
 
 
 
-            input:checked
-                &~ span
+            input.mobileCheckbox:checked
+                &~ span.mobileToggle
                     opacity: 1
                     transform: rotate(45deg) translate(0px, -6px)
                     background: $white
 
 
-                &~ span:nth-of-type(2)
+                &~ span.mobileToggle:nth-of-type(2)
                     opacity: 0
                     transform: rotate(0deg) scale(0.2, 0.2)
 
 
-                &~ span:nth-of-type(3)
+                &~ span.mobileToggle:nth-of-type(3)
                     transform: rotate(-45deg) translate(0, -1px)
 
 
@@ -117,7 +200,7 @@ nav
                     height: auto
                     width: 100%
                     background: $primary
-                    top: 70px
+                    top: 100px
                     position: absolute
                     left: 0
                     z-index: 100
